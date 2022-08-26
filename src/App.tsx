@@ -1,7 +1,6 @@
 import './App.scss';
+import Header from './components/Header/Header';
 
-function App(): JSX.Element {
-  return <></>;
+export default function App(): JSX.Element {
+  return <Header />;
 }
-
-export default App;
