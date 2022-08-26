@@ -7,7 +7,7 @@ interface ButtonProps {
 
 export default function Button(props: ButtonProps): JSX.Element {
   return (
-    <button className="button" onClick={props.onClick}>
+    <button className="Button" onClick={props.onClick}>
       {props.buttonText}
     </button>
   );
