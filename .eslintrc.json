@@ -10,11 +10,13 @@
   ],
   "overrides": [],
   "parserOptions": {
+    "project": "**/tsconfig.json",
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
   "plugins": ["react", "prettier"],
   "rules": {
+    "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
       "error",
       {
@@ -23,7 +25,6 @@
         "semi": true,
         "jsxSingleQuote": true,
         "singleQuote": true,
-        "useTabs": true,
         "endOfLine": "auto",
         "max-len": ["error", { "code": 100 }]
       }
