@@ -3,11 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "plugin:react/recommended",
-    "standard-with-typescript",
-    "prettier"
-  ],
+  "extends": ["plugin:react/recommended", "standard-with-typescript", "prettier"],
   "overrides": [],
   "parserOptions": {
     "project": "**/tsconfig.json",
@@ -17,13 +13,13 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "react/react-in-jsx-scope": "off",
+    "jsx-quotes": ["error", "prefer-double"],
     "prettier/prettier": [
       "error",
       {
         "printWidth": 100,
         "trailingComma": "es5",
         "semi": true,
-        "jsxSingleQuote": true,
         "singleQuote": true,
         "endOfLine": "auto",
         "max-len": ["error", { "code": 100 }]
