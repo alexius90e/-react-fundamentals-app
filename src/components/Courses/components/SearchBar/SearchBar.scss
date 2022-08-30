@@ -1,0 +1,8 @@
+.SearchBar {
+  display: flex;
+  gap: 1rem;
+
+  & .Input {
+    min-width: 30rem;
+  }
+}

@@ -1,0 +1,20 @@
+.Button {
+  padding: 0.5rem 1rem;
+  min-width: 10rem;
+  background: none;
+  font-weight: bold;
+  color: #227b82;
+  border: 1px solid #227b82;
+  cursor: pointer;
+  transition: all linear 0.1s;
+
+  &:hover {
+    color: #ffffff;
+    background-color: #0ca3ae;
+  }
+
+  &:active {
+    color: #ffffff;
+    background-color: #227b82;
+  }
+}
