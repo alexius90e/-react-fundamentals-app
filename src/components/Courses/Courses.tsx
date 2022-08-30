@@ -1,39 +1,41 @@
 import { useState } from 'react';
 import Button from '../../common/Button/Button';
-import { mockedAuthorsList, mockedCoursesList } from '../../constants';
 import { Author } from '../../models/author.interface';
 import { Course } from '../../models/course.interface';
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import './Courses.scss';
 
-function Courses(): JSX.Element {
-  const courses: Course[] = mockedCoursesList;
-  const authors: Author[] = mockedAuthorsList;
+interface CoursesProps {
+  courses: Course[];
+  authors: Author[];
+}
 
-  const [addCourse, setAddCourse] = useState(false);
+function Courses(props: CoursesProps): JSX.Element {
+  const [filteredCourses, setFilteredCourses] = useState(props.courses);
 
-  function handleAddNewCourseClick(): void {
-    setAddCourse(!addCourse);
+  function checkField(fieldValue: string, searchQuery: string): boolean {
+    return fieldValue.toLowerCase().includes(searchQuery);
   }
 
-  const courseCards: JSX.Element = (
-    <div className="Courses__cards">
-      {courses.map((course) => (
-        <CourseCard course={course} authorsList={authors} key={course.id} />
-      ))}
-    </div>
-  );
-
-  const createCourse: JSX.Element = <div>createCourse</div>;
+  function filterCourses(searchQuery: string): void {
+    setFilteredCourses(
+      props.courses.filter((course: Course): boolean => {
+        const { id, title } = course;
+        return checkField(id, searchQuery) || checkField(title, searchQuery);
+      })
+    );
+  }
 
   return (
     <main className="Courses">
       <div className="Courses__filter">
-        <SearchBar />
-        <Button buttonText="Add New Course" onClick={handleAddNewCourseClick} />
+        <SearchBar onSearch={filterCourses} />
+        <Button buttonText="Add New Course" />
       </div>
-      {addCourse ? createCourse : courseCards}
+      {filteredCourses.map((course) => (
+        <CourseCard course={course} authorsList={props.authors} key={course.id} />
+      ))}
     </main>
   );
 }
