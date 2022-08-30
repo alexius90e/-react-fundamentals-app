@@ -8,7 +8,23 @@ interface CourseCardProps {
   authorsList: Author[];
 }
 
-function getAuthors(authorsList: Author[], authorIds: string[]): string {
+function formatDate(date: string): string {
+  return new Date(date).toLocaleDateString('ru');
+}
+
+function formatDuration(duration: number): string {
+  const MINUTES_IN_HOUR = 60;
+
+  const minutes = duration % MINUTES_IN_HOUR;
+  const minutesString = minutes >= 10 ? `${minutes}` : `0${minutes}`;
+
+  const hours = Math.floor(duration / MINUTES_IN_HOUR);
+  const hoursString = hours >= 10 ? `${hours}` : `0${hours}`;
+
+  return `${hoursString}:${minutesString} ${hours > 1 ? 'hours' : 'hour'}`;
+}
+
+function formatAuthors(authorsList: Author[], authorIds: string[]): string {
   return authorsList
     .filter((author: Author): boolean => authorIds.includes(author.id))
     .map((author: Author): string => author.name)
@@ -26,17 +42,17 @@ function CourseCard(props: CourseCardProps): JSX.Element {
 
       <p className="CourseCard__creation-date">
         <b>Created: </b>
-        {course.creationDate}
+        {formatDate(course.creationDate)}
       </p>
 
       <p className="CourseCard__duration">
         <b>Duration: </b>
-        {course.duration}
+        {formatDuration(course.duration)}
       </p>
 
       <p className="CourseCard__authors">
         <b>Authors: </b>
-        {getAuthors(authorsList, course.authors)}
+        {formatAuthors(authorsList, course.authors)}
       </p>
 
       <Button buttonText="Show Course" />
