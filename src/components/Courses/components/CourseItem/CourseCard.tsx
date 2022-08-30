@@ -1,9 +1,9 @@
 import Button from '../../../../common/Button/Button';
 import { Author } from '../../../../models/author.interface';
 import { Course } from '../../../../models/course.interface';
-import './CourseItem.scss';
+import './CourseCard.scss';
 
-interface CourseProps {
+interface CourseCardProps {
   course: Course;
   authorsList: Author[];
 }
@@ -15,26 +15,26 @@ function getAuthors(authorsList: Author[], authorIds: string[]): string {
     .join(', ');
 }
 
-function CourseItem(props: CourseProps): JSX.Element {
+function CourseCard(props: CourseCardProps): JSX.Element {
   const { course, authorsList } = props;
 
   return (
-    <div className="CourseItem">
-      <h2 className="CourseItem__title">{course.title}</h2>
+    <div className="CourseCard">
+      <h2 className="CourseCard__title">{course.title}</h2>
 
-      <p className="CourseItem__description">{course.description}</p>
+      <p className="CourseCard__description">{course.description}</p>
 
-      <p className="CourseItem__creation-date">
+      <p className="CourseCard__creation-date">
         <b>Created: </b>
         {course.creationDate}
       </p>
 
-      <p className="CourseItem__duration">
+      <p className="CourseCard__duration">
         <b>Duration: </b>
         {course.duration}
       </p>
 
-      <p className="CourseItem__authors">
+      <p className="CourseCard__authors">
         <b>Authors: </b>
         {getAuthors(authorsList, course.authors)}
       </p>
@@ -44,4 +44,4 @@ function CourseItem(props: CourseProps): JSX.Element {
   );
 }
 
-export default CourseItem;
+export default CourseCard;

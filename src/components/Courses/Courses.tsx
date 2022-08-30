@@ -1,7 +1,7 @@
 import { mockedAuthorsList, mockedCoursesList } from '../../constants';
 import { Author } from '../../models/author.interface';
 import { Course } from '../../models/course.interface';
-import CourseItem from './components/CourseItem/CourseItem';
+import CourseItem from './components/CourseItem/CourseCard';
 import './Courses.scss';
 
 function Courses(): JSX.Element {
