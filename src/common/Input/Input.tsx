@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import './Input.scss';
 interface InputProps {
+  value?: string;
   label?: string;
   placeholder?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => unknown;
@@ -17,6 +18,7 @@ function Input(props: InputProps): JSX.Element {
           type={props.type ?? 'text'}
           placeholder={props.placeholder}
           onChange={props.onChange}
+          value={props.value}
         />
       </label>
     </div>

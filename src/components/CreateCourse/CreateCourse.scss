@@ -1,0 +1,47 @@
+.CreateCourse {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+
+    & > .Button {
+      flex: 0 0 auto;
+      margin-bottom: 0.5rem;
+    }
+
+    & > .Input {
+      flex: 1 0 auto;
+      max-width: 50%;
+    }
+  }
+
+  &__authors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    &-item {
+      flex: 1 0 calc(50% - 1rem);
+    }
+
+    &-add {
+      &-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+    }
+
+    &-duration-message {
+      font-size: 1.75rem;
+    }
+  }
+
+  &__heading {
+    text-align: center;
+  }
+}
