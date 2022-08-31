@@ -2,7 +2,8 @@
   display: flex;
   gap: 1rem;
 
-  & .Input {
+  & > .Input {
     min-width: 30rem;
+    margin-bottom: 0;
   }
 }
