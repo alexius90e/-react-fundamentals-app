@@ -9,15 +9,17 @@ interface InputProps {
 
 function Input(props: InputProps): JSX.Element {
   return (
-    <label>
-      {props.label}
-      <input
-        className="Input"
-        type={props.type ?? 'text'}
-        placeholder={props.placeholder}
-        onChange={props.onChange}
-      />
-    </label>
+    <div className="Input">
+      <label className="Input__label">
+        {props.label}
+        <input
+          className="Input__input"
+          type={props.type ?? 'text'}
+          placeholder={props.placeholder}
+          onChange={props.onChange}
+        />
+      </label>
+    </div>
   );
 }
 
