@@ -6,9 +6,11 @@ import { Course } from './models/course.interface';
 import { mockedAuthorsList, mockedCoursesList } from './constants';
 
 import Courses from './components/Courses/Courses';
-import CreateCourse from './components/CreateCourse/CreateCourse';
 import CourseInfo from './components/CourseInfo/CourseInfo';
+import CreateCourse from './components/CreateCourse/CreateCourse';
 import Header from './components/Header/Header';
+import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration';
 
 import './App.scss';
 
@@ -25,22 +27,24 @@ export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to="courses" />} />
+      <main>
+        <Routes>
+          <Route path="/" element={<Navigate to="courses" />} />
 
-        <Route path="/courses" element={<Courses {...{ courses, authors }} />} />
+          <Route path="/courses" element={<Courses {...{ courses, authors }} />} />
 
-        <Route
-          path="/courses/add"
-          element={<CreateCourse {...{ authors, createCourse, createAuthor }} />}
-        />
+          <Route
+            path="/courses/add"
+            element={<CreateCourse {...{ authors, createCourse, createAuthor }} />}
+          />
 
-        <Route path="/courses:courseId" element={<CourseInfo />} />
+          <Route path="/courses:courseId" element={<CourseInfo />} />
 
-        <Route path="/login" />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/register" />
-      </Routes>
+          <Route path="/register" element={<Registration />} />
+        </Routes>
+      </main>
     </BrowserRouter>
   );
 }
