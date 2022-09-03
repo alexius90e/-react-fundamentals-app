@@ -1,0 +1,17 @@
+.registration {
+  padding: 6rem 1.5rem;
+
+  &__heading {
+    text-align: center;
+  }
+
+  &__form {
+    max-width: 36rem;
+    margin: 0 auto;
+
+    & > .Button {
+      display: block;
+      margin: 1.5rem auto 0;
+    }
+  }
+}
