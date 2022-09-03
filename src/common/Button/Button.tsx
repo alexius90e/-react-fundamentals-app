@@ -14,6 +14,5 @@ export default function Button(props: ButtonProps): JSX.Element {
     </button>
   );
 
-  if (props.link !== undefined) return <Link to={props.link}>{buttonElement}</Link>;
-  return buttonElement;
+  return props.link === undefined ? buttonElement : <Link to={props.link}>{buttonElement}</Link>;
 }
