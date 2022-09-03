@@ -37,7 +37,7 @@ function CourseCard(props: CourseCardProps): JSX.Element {
         {formatAuthors(authorsList, course.authors)}
       </p>
 
-      <Button buttonText="Show Course" />
+      <Button buttonText="Show Course" link={`/courses/${props.course.id}`} />
     </div>
   );
 }
