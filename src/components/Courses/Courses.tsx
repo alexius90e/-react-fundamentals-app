@@ -9,7 +9,6 @@ import './Courses.scss';
 interface CoursesProps {
   courses: Course[];
   authors: Author[];
-  createCourse: (course: Course | null) => void;
 }
 
 function Courses(props: CoursesProps): JSX.Element {
@@ -32,7 +31,7 @@ function Courses(props: CoursesProps): JSX.Element {
     <main className="Courses">
       <div className="Courses__filter">
         <SearchBar onSearch={filterCourses} />
-        <Button buttonText="Add New Course" onClick={() => props.createCourse(null)} />
+        <Button buttonText="Add New Course" link="/courses/add" />
       </div>
       {filteredCourses.map((course) => (
         <CourseCard course={course} authorsList={props.authors} key={course.id} />

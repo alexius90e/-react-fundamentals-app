@@ -10,8 +10,6 @@ import './CreateCourse.scss';
 
 interface CreateCourseProps {
   authors: Author[];
-  createCourse: (courseValues: Course | null) => void;
-  createAuthor: (authour: Author) => void;
 }
 
 function CreateCourse(props: CreateCourseProps): JSX.Element {
@@ -52,7 +50,6 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
     const newAuthor: Author = { id: uuidv4(), name: newAuthorName };
     setAuthors([...authors, newAuthor]);
     setNewAuthorName('');
-    props.createAuthor(newAuthor);
   };
 
   const addAuthor = (authorId: string): void => {
@@ -74,10 +71,7 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
           label="Title"
           placeholder="Enter title"
         />
-        <Button
-          buttonText="Create Course"
-          onClick={() => props.createCourse(courseValues)}
-        ></Button>
+        <Button buttonText="Create Course" link="/courses"></Button>
       </div>
       <Input
         onChange={(event) => handleInputChange(event, { description: true })}
