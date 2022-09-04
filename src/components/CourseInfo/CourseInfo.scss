@@ -1,0 +1,35 @@
+.course-info {
+  padding: 1.5rem;
+
+  &__header {
+    text-align: right;
+  }
+
+  &__title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__info {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  &__description {
+    flex: 1 0 70%;
+  }
+
+  &__sidebar {
+    flex: 1 0 30%;
+  }
+
+  &__id {
+    margin-top: 0;
+  }
+
+  &__authors {
+    &-title {
+      font-weight: bold;
+    }
+  }
+}
