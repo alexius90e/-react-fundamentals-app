@@ -21,7 +21,6 @@ export default function Header(props: IHeaderProps): JSX.Element {
 
   const logout = async (): Promise<AxiosResponse<any, any>> => {
     const authorizationToken = localStorage.getItem('token');
-    console.log(authorizationToken);
     return await axios.delete(`${baseApiUrl}/logout`, {
       headers: {
         Authorization: String(authorizationToken),
