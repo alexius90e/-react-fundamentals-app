@@ -3,18 +3,18 @@
   min-width: 10rem;
   background: none;
   font-weight: bold;
-  color: #227b82;
-  border: 0.125rem solid #227b82;
+  color: #45ad47;
+  border: 0.125rem solid #45ad47;
   cursor: pointer;
   transition: all linear 0.1s;
 
   &:hover {
     color: #ffffff;
-    background-color: #0ca3ae;
+    background-color: #45ad47;
   }
 
   &:active {
     color: #ffffff;
-    background-color: #227b82;
+    background-color: #207222;
   }
 }
