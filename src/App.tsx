@@ -38,7 +38,7 @@ export default function App(): JSX.Element {
             element={<CreateCourse {...{ authors, createCourse, createAuthor }} />}
           />
 
-          <Route path="/courses:courseId" element={<CourseInfo />} />
+          <Route path="/courses/:courseId" element={<CourseInfo />} />
 
           <Route path="/login" element={<Login />} />
 
