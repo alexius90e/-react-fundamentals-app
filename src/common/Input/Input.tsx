@@ -1,11 +1,13 @@
 import { ChangeEvent } from 'react';
 import './Input.scss';
 interface InputProps {
-  value?: string;
   label?: string;
+  type?: 'text' | 'number' | 'search' | 'password' | 'email';
+  value?: string;
+  pattern?: string;
+  required?: boolean;
   placeholder?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>) => unknown;
-  type?: 'text' | 'number' | 'search' | 'password' | 'color';
 }
 
 function Input(props: InputProps): JSX.Element {
@@ -16,9 +18,11 @@ function Input(props: InputProps): JSX.Element {
         <input
           className="Input__input"
           type={props.type ?? 'text'}
+          value={props.value}
+          pattern={props.pattern}
+          required={props.required}
           placeholder={props.placeholder}
           onChange={props.onChange}
-          value={props.value}
         />
       </label>
     </div>
