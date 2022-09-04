@@ -44,7 +44,7 @@ function Registration(): JSX.Element {
 
   return (
     <div className="registration">
-      <h2 className="registration__heading">Registration</h2>s
+      <h2 className="registration__heading">Registration</h2>
       <form
         className="registration__form"
         onSubmit={handleSubmit as (event: FormEvent<HTMLFormElement>) => void}
