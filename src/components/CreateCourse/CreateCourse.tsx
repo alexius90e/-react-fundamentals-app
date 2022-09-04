@@ -35,45 +35,46 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
 
   const handleCourseCreateClick = (): void => props.createCourse(newCourse);
 
-  const handleInputChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    options: { title?: boolean; description?: boolean; duration?: boolean }
-  ): void => {
-    const eventValue = event.target.value;
-    const title = options.title === true ? eventValue : newCourse.title;
-    const description = options.description === true ? eventValue : newCourse.description;
-    const duration = options.duration === true ? Number(eventValue) : newCourse.duration;
-    setNewCourse({ ...newCourse, title, description, duration });
+  const handleTitleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setNewCourse({ ...newCourse, title: event.target.value });
+  };
+
+  const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setNewCourse({ ...newCourse, description: event.target.value });
+  };
+
+  const handleDurationChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setNewCourse({ ...newCourse, duration: Number(event.target.value) });
   };
 
   const handleAuthorNameChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setNewAuthorName(event.target.value);
   };
 
-  const handleAuthorCreateClick = (): void => {
+  const handleCreateAuthor = (): void => {
     if (newAuthorName.length < 2) return;
     const newAuthor: Author = { id: uuidv4(), name: newAuthorName };
     setAuthors([...authors, props.createAuthor(newAuthor)]);
     setNewAuthorName('');
   };
 
-  const handleAuthorAddClick = (authorId: string): void => {
-    if (newCourse.authors.includes(authorId)) return;
-    const authors = [...newCourse.authors, authorId];
+  const handleAddAuthor = (authorId: string): void => {
+    const authors = Array.from(new Set([...newCourse.authors, authorId]));
     setNewCourse({ ...newCourse, authors });
   };
 
-  const deleteAuthor = (authorId: string): void => {
+  const handleDeleteAuthor = (authorId: string): void => {
     const authors = newCourse.authors.filter((id) => id !== authorId);
     setNewCourse({ ...newCourse, authors });
   };
 
-  const renderAuthorItem = (author: Author): JSX.Element => (
+  const renderAuthorItem = (author: Author, isAdded?: boolean): JSX.Element => (
     <AuthorItem
       key={author.id}
       author={author}
-      addAuthor={handleAuthorAddClick}
-      deleteAuthor={deleteAuthor}
+      addAuthor={handleAddAuthor}
+      deleteAuthor={handleDeleteAuthor}
+      authorIsAdded={isAdded ?? false}
     />
   );
 
@@ -81,33 +82,29 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
     <div className="CreateCourse">
       <div className="CreateCourse__header">
         <Input
-          onChange={(event) => handleInputChange(event, { title: true })}
           label="Title"
           placeholder="Enter title"
+          onChange={(event) => handleTitleChange(event)}
         />
-        <Button
-          buttonText="Create Course"
-          link="/courses"
-          onClick={handleCourseCreateClick}
-        ></Button>
+        <Button buttonText="Create Course" link="/courses" onClick={handleCourseCreateClick} />
       </div>
       <Input
-        onChange={(event) => handleInputChange(event, { description: true })}
         label="Description"
         placeholder="Enter Description"
+        onChange={(event) => handleDescriptionChange(event)}
       />
 
       <div className="CreateCourse__authors">
         <div className="CreateCourse__authors-add CreateCourse__authors-item">
           <h3 className="CreateCourse__heading">Add author</h3>
           <Input
-            onChange={(event) => handleAuthorNameChange(event)}
             label="Author name"
             placeholder="Enter Author name"
             value={newAuthorName}
+            onChange={(event) => handleAuthorNameChange(event)}
           />
           <div className="CreateCourse__authors-add-wrapper">
-            <Button onClick={handleAuthorCreateClick} buttonText="Create author" />
+            <Button onClick={handleCreateAuthor} buttonText="Create author" />
           </div>
         </div>
 
@@ -124,7 +121,7 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
             label="Duration"
             placeholder="Enter duration in minutes"
             type="number"
-            onChange={(event) => handleInputChange(event, { duration: true })}
+            onChange={(event) => handleDurationChange(event)}
           />
           <div className="CreateCourse__authors-duration-message">
             Duration {formatDuration(newCourse.duration)}
@@ -135,7 +132,7 @@ function CreateCourse(props: CreateCourseProps): JSX.Element {
           <h3 className="CreateCourse__heading">Course Authors</h3>
           {authors
             .filter((author: Author): boolean => newCourse.authors.includes(author.id))
-            .map((author: Author) => renderAuthorItem(author))}
+            .map((author: Author) => renderAuthorItem(author, true))}
         </div>
       </div>
     </div>
