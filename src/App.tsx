@@ -17,8 +17,14 @@ import './App.scss';
 export default function App(): JSX.Element {
   const [courses, setCourses] = useState(mockedCoursesList as Course[]);
   const [authors, setAuthors] = useState(mockedAuthorsList as Author[]);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+
+  const addToken = (token: string): void => setToken(token);
+
+  const removeToken = (): void => setToken(null);
 
   const createCourse = (newCourse: Course): void => setCourses([...courses, newCourse]);
+
   const createAuthor = (newAuthor: Author): Author => {
     setAuthors([...authors, newAuthor]);
     return newAuthor;
@@ -26,10 +32,10 @@ export default function App(): JSX.Element {
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header removeToken={removeToken} />
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="courses" />} />
+          <Route path="/" element={<Navigate to={token === null ? '/login' : '/courses'} />} />
 
           <Route path="/courses" element={<Courses {...{ courses, authors }} />} />
 
@@ -40,7 +46,7 @@ export default function App(): JSX.Element {
 
           <Route path="/courses/:courseId" element={<CourseInfo />} />
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login addToken={addToken} />} />
 
           <Route path="/register" element={<Registration />} />
         </Routes>
