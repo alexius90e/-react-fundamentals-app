@@ -14,9 +14,7 @@ export default function Header(): JSX.Element {
       {noUserInfoRoutes.includes(location.pathname) ? null : (
         <div className="header__user-info">
           <span className="header__user-name">User Name</span>
-          <Button buttonText="Register" link="/register" />
-          <Button buttonText="Login" link="/login" />
-          <Button buttonText="Logout" />
+          <Button buttonText="Logout" link="/login" />
         </div>
       )}
     </header>
